@@ -1,0 +1,87 @@
+public class MyList<T> {
+public MyList() {
+super();
+}
+
+T data;
+MyList next;
+MyList head;
+MyList tail;
+int n;
+void add_first(T data) { //add first
+MyList a = new MyList();
+a.data = data;
+if (head == null)
+{
+head = a;
+tail = a;
+} else {
+a.next = head;
+head = a;
+}
+n++;
+}
+public <T extends Comparable<T» MyList insertSort() {
+int k = this.n;
+MyList[] array = new MyList[100000];
+MyList ML= this.head;
+for(int i=0; i<k;i++) {
+array[i]= ML;
+ML=ML.next;
+}
+
+MyList ML1= new MyList();
+T tmp1 = (T)array[1].data;
+T tmp2 = (T)array[0].data;
+int res = tmp1.compareTo(tmp2);
+for (int i =0 ; i < k; i++) {
+for(int j=i;j>0; j--) {
+tmp1 = (T)array[j].data;
+tmp2 = (T)array[j-1].data;
+res = tmp1.compareTo(tmp2);
+if(res<0) {
+MyList tmp=array[j-1];
+array[j-1]=array[j];
+array[j]=tmp;
+}
+}
+}
+
+for(int o = k-1;o>-1;o--) {
+ML1.add_first(array[o].data);
+}
+return ML1;
+}
+
+
+public void printList() { //print list
+MyList t = head;
+while (t != null) {
+System.out.print(t.data + " ");
+t = t.next;
+}
+}
+}
+import java.util.Arrays;
+public class TestMyList {
+public TestMyList() {
+super();
+}
+
+public static void main(String[] args) {
+TestMyList testList = new TestMyList();
+//myList t = new myList();
+MyList l = new MyList();
+//l.del_El_value("234");
+l.add_first("123");
+l.add_first("345");
+l.add_first("2432");
+l.add_first("345");
+l.add_first("3333");
+l.add_first("111");
+l.add_first("2222");
+//l.printList();
+l=l.insertSort();
+l.printList();
+}
+}
